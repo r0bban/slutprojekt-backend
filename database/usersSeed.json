@@ -1,0 +1,36 @@
+[
+    {
+        "email": "admin@example.com",
+        "name": "Johan Kivi",
+        "role": "admin",
+        "adress": {
+            "street": "Tokitokvägen 3",
+            "zip": "123 45",
+            "city": "Tokberga"
+        },
+        "payment": {
+            "cardOwner": "Johan Kivi",
+            "cardNumber": "1234 5678 9101 1121",
+            "validUntil": "10 / 23",
+            "cvv": "123"
+        },
+        "ordersHistory": []
+    },
+    {
+        "email": "customer@example.com",
+        "name": "David Lundholm",
+        "role": "customer",
+        "adress": {
+            "street": "Tokitokvägen 4",
+            "zip": "123 46",
+            "city": "Tokbergaskogen"
+        },
+        "payment": {
+            "cardOwner": "Johan Kivi",
+            "cardNumber": "1234 5678 9101 1121",
+            "validUntil": "10 / 23",
+            "cvv": "123"
+        },
+        "ordersHistory": []
+    }
+]
