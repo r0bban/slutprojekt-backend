@@ -7,12 +7,13 @@ const router = new Router()
 router.post('/', async (req,res) => {
     let result = await User.authenticate(req.body.email, req.body.password)
     if(result.error){
-        res.json({
+        res.status(403).json({
             error: result.message
         })
     }else{
         res.json({
-            token: result.token
+            token: result.token,
+            user: result.userData
         })
     }
 })

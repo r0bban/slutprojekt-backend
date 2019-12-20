@@ -13,7 +13,7 @@ router.get('/', Auth.user, async (req,res) => {
     res.json(orders)
 })
 
-router.post('/', async (req,res) => {
+router.post('/', Auth.anonymous, async (req,res) => {
     let result = await Order.create(req.body, req.user)
     if(result.error){
         res.status(400).json({error: "Could not create order"})

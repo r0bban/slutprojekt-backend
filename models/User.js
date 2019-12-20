@@ -22,7 +22,8 @@ function format(body){
     return {
         email,name,adress,
         role: 'customer',
-        password: bcrypt.hashSync(password, 10)
+        password: bcrypt.hashSync(password, 10),
+        orderHistory: []
     }
 }
 
@@ -62,7 +63,11 @@ module.exports = {
                 id:user._id,
                 exp: Math.floor(Date.now() / 1000) + (60)
             }, 'secret')
-            return {error:false, token}
+
+            const {email,name,role,adress} = user
+            const userData = {email,name,role,adress}
+
+            return {error:false, token, userData }
         }else{
             return {error:true, message:"Invalid Credentials"}
         }
@@ -70,5 +75,9 @@ module.exports = {
 
     async verifyToken(token){
         await jwt.verify(token, 'secret')
+    },
+
+    async addOrderToUser(order, user){
+        await users.update({_id:user._id}, {$push:{orderHistory:order._id}})
     }
 }

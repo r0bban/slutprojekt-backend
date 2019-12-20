@@ -24,8 +24,15 @@ router.post('/', Auth.admin, async (req,res) => {
         })
     }
 })
-router.get('/:id', (req,res) => {
-    res.send('PRODUCTS!')
+
+router.patch('/:id', Auth.admin, async (req,res) => {
+    let result = await Product.update(req.params.id, req.body)
+    if(result.error){
+        res.status(400).json({error: 'Could not update product'})
+    }else{
+        res.status(200).json({message: 'Product updated'})
+    }
 })
+
 
 module.exports = router

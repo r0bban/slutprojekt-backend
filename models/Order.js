@@ -20,6 +20,9 @@ module.exports = {
                 status: 'inProcess',
                 orderValue: products.reduce((acc,product) => acc+product.price, 0)
             })
+            await User.addOrderToUser(order, user)
+            
+
             return {error:false}
         }else{
             return {error:true}
@@ -35,7 +38,7 @@ module.exports = {
 
     async findByCustomer(userID){
         let user = await User.findOne(userID)
-        const ords = await orders.find({_id:{$in:user.orders}})
+        const ords = await orders.find({_id:{$in:user.orderHistory}})
         return ords
     }
 }

@@ -36,4 +36,20 @@ module.exports = {
         }
     },
 
+    async update(productId, body){
+        try{
+            const keys = ['title', 'price', 'shortDesc', 'longDesc', 'imgFile'];
+            let patch = keys.reduce((acc, key) => {
+                if(body[key]){ acc[key] = body[key] }
+                return acc
+            }, {})
+            
+            await products.update({_id:productId}, patch)
+
+            return {error:false}
+        }catch(error){
+            return {error:true, message:error}
+        }
+    }
+
 }
