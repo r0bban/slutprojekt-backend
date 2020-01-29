@@ -29,8 +29,8 @@ module.exports = {
         let {title, price, shortDesc, longDesc, imgFile} = body
         let serial = Date.now()
         try{
-            await products.insert({title, price, shortDesc, longDesc, imgFile, serial})
-            return {error: false}
+            const product = await products.insert({title, price, shortDesc, longDesc, imgFile, serial})
+            return {error: false, product}
         }catch(err){
             return {error: true, message:err}
         }
@@ -45,10 +45,21 @@ module.exports = {
             }, {})
             
             await products.update({_id:productId}, patch)
+            const product = products.findOne({_id:productId})
 
-            return {error:false}
+            return {error:false, data: product}
         }catch(error){
             return {error:true, message:error}
+        }
+    },
+
+    async destroy(productId){
+        try{
+            await products.remove({_id:productId})
+            return {error:false}
+        }catch(error){
+            console.log(error)
+            return {error:true}
         }
     }
 

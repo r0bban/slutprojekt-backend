@@ -20,7 +20,8 @@ router.post('/', Auth.admin, async (req,res) => {
         })
     }else{
         res.json({
-            message: "Product created!"
+            message: "Product created!",
+            product: result.product
         })
     }
 })
@@ -30,7 +31,17 @@ router.patch('/:id', Auth.admin, async (req,res) => {
     if(result.error){
         res.status(400).json({error: 'Could not update product'})
     }else{
-        res.status(200).json({message: 'Product updated'})
+        res.status(200).json({message: 'Product updated', data: result.data})
+    }
+})
+
+
+router.delete('/:id', Auth.admin, async (req,res) => {
+    let result = await Product.destroy(req.params.id)
+    if(result.error){
+        res.status(400).json({error: 'Could not delete product'})
+    }else{
+        res.status(200).json({message: 'Product obliteraded'})
     }
 })
 
