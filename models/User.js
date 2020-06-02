@@ -1,5 +1,5 @@
 const NeDB = require('nedb-promise')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const users = new NeDB({filename:'database/users.db', autoload: true})
 const jwt = require('jsonwebtoken')
 
