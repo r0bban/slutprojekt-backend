@@ -13,6 +13,10 @@ module.exports = {
         }
     },
 
+    async get(id){
+        return await products.findOne({_id:id})
+    },
+
     async all(){
         try{
             let prods = await products.find({})

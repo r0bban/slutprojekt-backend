@@ -8,8 +8,15 @@ router.get('/', async (req,res) => {
     res.json(products)
 })
 
-router.get('/:id', (req,res) => {
-    res.send('PRODUCTS!')
+router.get('/:id', async (req,res) => {
+    const product = await Product.get(req.params.id)
+    if(product){
+        res.json(product)
+    }else{
+        res.status(404).json({
+            error: 'Product not found'
+        })
+    }
 })
 
 router.post('/', Auth.admin, async (req,res) => {
