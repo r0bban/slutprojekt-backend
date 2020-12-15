@@ -1,3 +1,6 @@
+backend for frontend lab: https://github.com/r0bban/slutprojekt-webbapplikation
+(Provided rady in class, just modified by me)
+
 # SINUS Webshop - REST API
 
 ## Getting Started
